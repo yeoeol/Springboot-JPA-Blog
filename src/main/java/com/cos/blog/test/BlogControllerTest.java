@@ -11,9 +11,8 @@ public class BlogControllerTest {
     public String hello() {
         return "<h1>hello spring boot</h1>";
     }
-    @GetMapping("/")
+/*    @GetMapping("/")
     public String index() {
         return "index";
-    }
-
+    }*/
 }
