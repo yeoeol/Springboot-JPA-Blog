@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -35,6 +34,8 @@ public class User {
     //DB는 RoleType이라는 게 없음
     @Enumerated(EnumType.STRING)
     private RoleType role; // Enum을 쓰는게 좋음 -> ADMIN, USER
+
+    private String oauth; // kakao, google
 
     @CreationTimestamp // 시간이 자동 입력
     private Timestamp createDate;
