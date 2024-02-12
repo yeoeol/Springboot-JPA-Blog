@@ -2,7 +2,6 @@ package com.cos.blog.config.auth;
 
 import com.cos.blog.model.User;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
