@@ -2,6 +2,7 @@ package com.cos.blog.config.auth;
 
 import com.cos.blog.model.User;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -51,6 +52,10 @@ public class PrincipalDetail implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     // 계정이 갖고있는 권한 목록을 반환 (권한이 여러 개 있을 수 있어서 루프를 돌아야 하는데 우리는 한 개만)
