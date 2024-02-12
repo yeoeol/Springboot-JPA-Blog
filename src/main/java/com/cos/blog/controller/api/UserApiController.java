@@ -1,11 +1,19 @@
 package com.cos.blog.controller.api;
 
+import com.cos.blog.config.auth.PrincipalDetail;
 import com.cos.blog.dto.ResponseDto;
 import com.cos.blog.model.User;
 import com.cos.blog.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +24,8 @@ import javax.servlet.http.HttpSession;
 public class UserApiController {
 
     private final UserService userService;
+//    private final AuthenticationManager authenticationManager;
+
 
     @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user) {
@@ -24,5 +34,16 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
+    @PutMapping("/user")
+    public ResponseDto<Integer> update(@RequestBody User user,
+                                       @AuthenticationPrincipal PrincipalDetail principal) {
+        userService.update(user, principal);
 
+        //세션 등록
+//        Authentication authenticate =
+//                authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+//        SecurityContextHolder.getContext().setAuthentication(authenticate);
+
+        return new ResponseDto<>(HttpStatus.OK.value(), 1);
+    }
 }
