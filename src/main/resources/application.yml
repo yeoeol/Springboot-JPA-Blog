@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: cos
-    password: ***REMOVED***
+    password: 1234
 
   mvc:
     view:
@@ -26,4 +26,4 @@ spring:
       fail-on-empty-beans: false
 
 cos:
-  key: cos***REMOVED***
+  key: cos1234

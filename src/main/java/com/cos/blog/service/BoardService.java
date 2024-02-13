@@ -1,7 +1,7 @@
 package com.cos.blog.service;
 
+import com.cos.blog.dto.ReplySaveRequestDto;
 import com.cos.blog.model.Board;
-import com.cos.blog.model.Reply;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.BoardRepository;
 import com.cos.blog.repository.ReplyRepository;
@@ -55,15 +55,27 @@ public class BoardService {
         // 해당 함수 종료 시(service가 종료될 때) 트랜잭션이 종료됨 -> 더티체킹 - 자동 업데이트, db flush
     }
 
-    public void commentWrite(User user, int boardId, Reply requestReply) {
-        Board board = boardRepository.findById(boardId)
+    public void replyWrite(ReplySaveRequestDto replySaveRequestDto) {
+/*        User user = userRepository.findById(replySaveRequestDto.getUserId())
                 .orElseThrow(
-                        () -> new IllegalArgumentException("댓글 쓰기 실패 : 게시글 id를 찾을 수 없습니다.")
+                        () -> new IllegalArgumentException("댓글 쓰기 실패 : 유저 id를 찾을 수 없습니다.")
                 );  // 영속화 완료
 
-        requestReply.setUser(user);
-        requestReply.setBoard(board);
+        Board board = boardRepository.findById(replySaveRequestDto.getBoardId())
+                .orElseThrow(
+                        () -> new IllegalArgumentException("댓글 쓰기 실패 : 게시글 id를 찾을 수 없습니다.")
+                );  // 영속화 완료*/
 
-        replyRepository.save(requestReply);
+/*        Reply reply = Reply.builder()
+                    .user(user)
+                    .board(board)
+                    .content(replySaveRequestDto.getContent())
+                    .build();*/
+
+        replyRepository.mSave(replySaveRequestDto.getUserId(), replySaveRequestDto.getBoardId(), replySaveRequestDto.getContent());
+    }
+
+    public void replyDelete(int replyId) {
+        replyRepository.deleteById(replyId);
     }
 }

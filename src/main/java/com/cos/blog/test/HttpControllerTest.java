@@ -36,7 +36,7 @@ public class HttpControllerTest {
 
     @GetMapping("/http/lombok")
     public String lombokTest() {
-        Member m = new Member(1, "ssar", "***REMOVED***", "email");
+        Member m = new Member(1, "ssar", "1234", "email");
         System.out.println("getter: " + m.getId());
         m.setId(5000);
         System.out.println("setter: " + m.getId());
