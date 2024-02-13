@@ -24,7 +24,6 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String detail(@PathVariable int id, Model model) {
-        System.out.println("BoardController.detail");
         model.addAttribute("board", boardService.detail(id));
         return "board/detail";
     }
